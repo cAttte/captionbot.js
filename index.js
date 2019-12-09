@@ -44,8 +44,7 @@ exports.caption = (imageURL, callback) => {
 
             request(options, (err, res, body) => {
 
-                if (err) throw err
-                var error = handleErrors(res.body)
+                var error = err || handleErrors(res.body)
                 if (error) reject(error)
 
                 resolve(res.body)
@@ -58,11 +57,12 @@ exports.caption = (imageURL, callback) => {
 
         request(options, (err, res, body) => {
 
-            if (err) throw err
-            var error = handleErrors(res.body)
-            if (error) throw new Error(error)
-
-            callback(res.body)
+            var error = err || handleErrors(res.body)
+            if (error) {
+                callback(error)
+            } else {
+                callback(error, res.body)
+            }
 
         })
 
