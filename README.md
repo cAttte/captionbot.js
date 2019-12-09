@@ -18,7 +18,10 @@ var imageURL = "https://www.tinypetstube.com/wp-content/uploads/cute-puppy-pictu
 
 caption(imageURL, (error, caption) => {
 
-    if (error) throw error
+    if (error) {
+        console.log("ERROR: " + error)
+        return
+    }
 
     console.log("Caption: " + caption)
     // => Caption: I think it's a dog standing on grass.

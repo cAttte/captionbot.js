@@ -1,6 +1,6 @@
 {
   "name": "captionbot.js",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "A tiny JavaScript wrapper for Microsoft's Captionbot API.",
   "main": "index.js",
   "scripts": {
