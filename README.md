@@ -2,9 +2,11 @@
 
 A tiny JavaScript wrapper for Microsoft's Captionbot API.
 
-# Install
+# Installation
 
-    npm install captionbot.js
+```
+npm install captionbot.js
+```
 
 # Usage
 
@@ -107,3 +109,7 @@ The example images used in the usage section along their captions.
 <img src="http://www.aridzoneafforestation.org/wp-content/uploads/2018/01/europeslostf.jpg" width="300" >
 
 (as we can see in the last two captions, Captionbot is not very good at counting :P)
+
+# Disclaimer
+
+This wrapper was not made by Microsoft. All image processing is made by Azure's Captionbot. This package only facilitates the process of retrieving the captions.

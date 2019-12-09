@@ -1,6 +1,6 @@
 {
   "name": "captionbot.js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A tiny JavaScript wrapper for Microsoft's Captionbot API.",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,11 @@
     "url": "Santiago-MG/captionbot.js"
   },
   "keywords": [
-    "captionbot"
+    "captionbot",
+    "captionbot.ai",
+    "caption",
+    "image-recognition",
+    "microsoft"
   ],
   "author": "santiagomg",
   "license": "MIT",
