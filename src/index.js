@@ -1,9 +1,10 @@
 const fetch = require("node-fetch")
+const URLError = require("./URLError")
 
 module.exports = (imageURL) => {
 
     if (typeof imageURL !== "string")
-        throw new TypeError("Invalid image URL.")
+        throw new URLError("Invalid image URL.")
 
     const response = await fetch(imageURL, {
         method: "POST",
@@ -19,13 +20,13 @@ module.exports = (imageURL) => {
     if (typeof response !== "string")
         throw new TypeError("Response body is invalid.")
     else if (module.exports.ERROR_MAP[response])
-        throw new TypeError(module.exports.ERROR_MAP[response])
+        throw new URLError(module.exports.ERROR_MAP[response])
 
     return response
 }
 
-module.exports.ERROR_MAP = {
-    "Did you upload an image?": "Image URL not specified.",
-    "I really can't describe the picture 😳": "Invalid image URL.",
-    "I'm not sure what you're asking": "Invalid image URL."
-}
+module.exports.ERROR_CAPTIONS = [
+    "Did you upload an image? I'm more of a visual person (bot) and can only reply to images",
+    "I really can't describe the picture 😳",
+    "I'm not sure what you're asking"
+]
