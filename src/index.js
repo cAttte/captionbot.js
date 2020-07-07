@@ -4,8 +4,14 @@ const ERROR_CAPTIONS = require("./errorCaptions.json")
 
 module.exports = (imageURL) => {
 
-    if (typeof imageURL !== "string")
-        throw new TypeError("Invalid image URL.")
+    if (!imageURL || typeof imageURL !== "string")
+        throw new TypeError("The image URL is not a string.")
+    try {
+        new URL(imageURL)
+    }
+    catch {
+        throw new URLError("The image URL is invalid.")
+    }
 
     const response = await fetch(imageURL, {
         method: "POST",
@@ -21,7 +27,7 @@ module.exports = (imageURL) => {
     if (typeof response !== "string")
         throw new TypeError("Response body is invalid.")
     else if (ERROR_CAPTIONS.includes(response))
-        throw new URLError("The specified URL is invalid")
+        throw new URLError("The image URL is missing, invalid, or not an image.")
 
     return response
 }
