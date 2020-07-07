@@ -1,6 +1,6 @@
 const fetch = require("node-fetch")
 const URLError = require("./URLError")
-const ERROR_CAPTIONS = require("./errorCaptions.json")
+const ERROR_CAPTIONS = require("./errorCaptions")
 
 module.exports = async (imageURL, { error = true } = {}) => {
 
