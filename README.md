@@ -10,7 +10,7 @@ npm install captionbot.js
 
 # Usage
 ```js
-const caption = require("captionbot.js")
+const { caption } = require("captionbot.js")
 const imageURL = "https://zuwanu.com/wp-content/uploads/2019/09/cars-zuwanu.jpg"
 
 // using then()
@@ -45,7 +45,7 @@ Caption an image given its URL.
 | options.error | Whether to throw an error/reject when the provided URL is invalid/missing, but a response is still obtained—this will be irrelevant if there's a network error, for example | `false` |
 
 ### Returns
-```Promise<String>```
+    Promise<String>
 
 ## captionbot.URLError *extends TypeError*
 Thrown by `caption()` when the specified URL is invalid, and the `error` option is `true`.
@@ -58,7 +58,7 @@ new URLError(message)
 A list of captions the API returns when the specified URL is invalid.
 
 ### Type
-```Array<String>```
+    Array<String>
 
 # Example captions
 Some examples of captions returned by the API.
