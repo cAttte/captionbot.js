@@ -2,7 +2,7 @@ const fetch = require("node-fetch")
 const URLError = require("./URLError")
 const ERROR_CAPTIONS = require("./errorCaptions.json")
 
-module.exports = (imageURL) => {
+module.exports = (imageURL, { error }) => {
 
     if (!imageURL || typeof imageURL !== "string")
         throw new TypeError("The image URL is not a string.")
@@ -26,7 +26,7 @@ module.exports = (imageURL) => {
 
     if (typeof response !== "string")
         throw new TypeError("Response body is invalid.")
-    else if (ERROR_CAPTIONS.includes(response))
+    else if (ERROR_CAPTIONS.includes(response) && error)
         throw new URLError("The image URL is missing, invalid, or not an image.")
 
     return response
