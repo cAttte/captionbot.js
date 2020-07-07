@@ -1,38 +1,7 @@
-const fetch = require("node-fetch")
+const caption = require("./caption")
 const URLError = require("./URLError")
-const ERROR_CAPTIONS = require("./errorCaptions")
+const ERROR_CAPTIONS = require("./ERROR_CAPTIONS")
 
-module.exports.caption = async (imageURL, { error = true } = {}) => {
-
-    if (error) {
-        if (!imageURL || typeof imageURL !== "string")
-            throw new TypeError("The image URL is not a string.")
-        try {
-            new URL(imageURL)
-        }
-        catch {
-            throw new URLError("The image URL is invalid.")
-        }
-    }
-
-    const response = await fetch("https://captionbot.azurewebsites.net/api/messages", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json; charset=utf-8"
-        },
-        body: JSON.stringify({
-            Content: imageURL,
-            Type: "CaptionRequest"
-        })
-    }).then(res => res.json())
-
-    if (typeof response !== "string")
-        throw new TypeError("Response body is invalid.")
-    else if (ERROR_CAPTIONS.includes(response) && error)
-        throw new URLError("The image URL is missing, invalid, or not an image.")
-
-    return response
-}
-
+module.exports.caption = caption
 module.exports.URLError = URLError
 module.exports.ERROR_CAPTIONS = ERROR_CAPTIONS
