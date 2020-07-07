@@ -2,13 +2,13 @@
   "name": "captionbot.js",
   "version": "1.1.5",
   "description": "A tiny JavaScript wrapper for Microsoft's Captionbot API.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "Santiago-MG/captionbot.js"
+    "url": "cAttte/captionbot.js"
   },
   "keywords": [
     "captionbot",
@@ -17,7 +17,7 @@
     "image-recognition",
     "microsoft"
   ],
-  "author": "santiagomg",
+  "author": "catte_",
   "license": "MIT",
   "dependencies": {
     "node-fetch": "^2.6.0"
