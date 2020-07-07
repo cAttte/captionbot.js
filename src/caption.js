@@ -2,6 +2,13 @@ const fetch = require("node-fetch")
 const URLError = require("./URLError")
 const ERROR_CAPTIONS = require("./ERROR_CAPTIONS")
 
+/**
+ * Caption an image given its URL.
+ * @param {String} imageURL The URL of the image to caption
+ * @param {Object} options
+ * @param {Boolean} options.error Whether to throw an error/reject when the provided URL is invalid/missing, but a response is still obtained—this will be irrelevant if there's a network error, for example
+ * @returns {Promise<String>}
+ */
 module.exports = async (imageURL, { error = true } = {}) => {
     if (error) {
         if (!imageURL || typeof imageURL !== "string")
