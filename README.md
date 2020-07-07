@@ -34,7 +34,7 @@ logCaption()
 
 # API
 
-## caption()
+## captionbot.caption()
 Caption an image given its URL.
 
 ### Parameters
@@ -47,14 +47,14 @@ Caption an image given its URL.
 ### Returns
 ```Promise<String>```
 
-## caption.URLError *extends TypeError*
+## captionbot.URLError *extends TypeError*
 Thrown by `caption()` when the specified URL is invalid, and the `error` option is `true`.
 
 ```js
 new URLError(message)
 ```
 
-## caption.ERROR_CAPTIONS
+## captionbot.ERROR_CAPTIONS
 A list of captions the API returns when the specified URL is invalid.
 
 ### Type
