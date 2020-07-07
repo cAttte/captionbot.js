@@ -4,13 +4,15 @@ const ERROR_CAPTIONS = require("./errorCaptions.json")
 
 module.exports = async (imageURL, { error } = {}) => {
 
-    if (!imageURL || typeof imageURL !== "string")
-        throw new TypeError("The image URL is not a string.")
-    try {
-        new URL(imageURL)
-    }
-    catch {
-        throw new URLError("The image URL is invalid.")
+    if (error) {
+        if (!imageURL || typeof imageURL !== "string")
+            throw new TypeError("The image URL is not a string.")
+        try {
+            new URL(imageURL)
+        }
+        catch {
+            throw new URLError("The image URL is invalid.")
+        }
     }
 
     const response = await fetch("https://captionbot.azurewebsites.net/api/messages", {
