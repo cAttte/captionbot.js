@@ -2,7 +2,7 @@ const fetch = require("node-fetch")
 const URLError = require("./URLError")
 const ERROR_CAPTIONS = require("./errorCaptions.json")
 
-module.exports = (imageURL, { error }) => {
+module.exports = async (imageURL, { error } = {}) => {
 
     if (!imageURL || typeof imageURL !== "string")
         throw new TypeError("The image URL is not a string.")
@@ -13,7 +13,7 @@ module.exports = (imageURL, { error }) => {
         throw new URLError("The image URL is invalid.")
     }
 
-    const response = await fetch(imageURL, {
+    const response = await fetch("https://captionbot.azurewebsites.net/api/messages", {
         method: "POST",
         headers: {
             "Content-Type": "application/json; charset=utf-8"
