@@ -1,44 +1,24 @@
-const request = require("request")
+const fetch = require("node-fetch")
 
-exports.caption = (imageURL, callback) => {
-
-    const options = {
-        "url": "https://captionbot.azurewebsites.net/api/messages",
-        "method": "POST",
-        "headers": {
+exports.caption = (imageURL) => {
+    const response = await fetch(imageURL, {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json; charset=utf-8"
         },
-        "json": {
-            "Content": imageURL,
-            "Type": "CaptionRequest"
-        }
-    }
-
-    function handleErrors(response) {
-        if (response.includes("Did you upload an image?")) {
-            return "Image URL not specified."
-        } else if (response === "I really can't describe the picture 😳"
-                || response === "I'm not sure what you're asking") {
-            return "Invalid Image URL."
-        }
-    }
-
-    if (!callback) {
-        return new Promise((resolve, reject) => {
-            request(options, (err, res, body) => {
-                var error = err || handleErrors(res.body)
-                if (error) reject(error)
-                resolve(res.body)
-            })
+        body: JSON.stringify({
+            Content: imageURL,
+            Type: "CaptionRequest"
         })
-    } else {
-        request(options, (err, res, body) => {
-            var error = err || handleErrors(res.body)
-            if (error) {
-                callback(error)
-            } else {
-                callback(error, res.body)
-            }
-        })
-    }
+    }).then(res => res.json())
+
+    if (typeof response !== "string")
+        throw new TypeError("Response body is invalid.")
+    else if (response === "Did you upload an image?")
+        throw new TypeError("Image URL not specified.")
+    else if (["I really can't describe the picture 😳", "I'm not sure what you're asking"]
+    .includes(response))
+        throw new TypeError("Invalid image URL.")
+
+    return response
 }
