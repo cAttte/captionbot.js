@@ -2,7 +2,7 @@ const fetch = require("node-fetch")
 const URLError = require("./URLError")
 const ERROR_CAPTIONS = require("./errorCaptions.json")
 
-module.exports = async (imageURL, { error } = {}) => {
+module.exports = async (imageURL, { error = true } = {}) => {
 
     if (error) {
         if (!imageURL || typeof imageURL !== "string")
